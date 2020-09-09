@@ -1,0 +1,116 @@
+<head>
+  <title>Meteor/Blaze</title>
+ 
+  <meta charset="utf-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1"> 
+
+  <link rel="stylesheet" href= 
+"https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> 
+    
+  <script src= 
+"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> 
+  </script> 
+    
+  <script src= 
+"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"> 
+  </script> 
+    
+  <script src= 
+"https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"> 
+  </script> 
+</head>
+
+
+<body >
+  <div class="navContainer justify-items-center">
+  <nav class="navbar navbar-expand-lg navbar-light bg-secondary ">
+    <a class="navbar-brand" style="color:#22c5ee" href="#">CoinCloud</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" expanded="false" label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+       <li class="nav-item">
+          <a class="nav-link " href="#">
+            {{#if currentUser}}
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-dark" style="color:#eceae5 "
+             data-toggle="modal" data-target="#addModal"> 
+            Add Notes 
+            </button> 
+           {{/if}}
+          </a>
+        </li>
+        <li class="nav-item mr-auto">
+          <a class='nav-link ' href="#">
+            <button type="button" class=' btn btn-dark ' style="color:#eceae5" >{{> loginButtons}}
+            </button>
+          </a>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search">
+        <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+  </nav>
+  </div>
+  
+ 
+  <div class="class container">
+    <h1 style="color:#580cbb">Latest Notes/Meteor-Blaze</h1>
+    {{#if currentUser}}
+     <ul class='collection'>
+      {{#each notes}}
+      {{> note}}
+      {{/each}}
+    </ul>
+    {{else}}
+    <p>Please log in to manage notes</p>
+    {{/if}}
+ </div>
+      {{> add}}
+</body>
+
+<template name="note">
+ <li class="collection-item">{{text}}: <strong>Added by {{username}}</strong></li>
+ <button class="delete-note " style="color:#91e5e5; background: #524d4d;">Delete</button>
+</template>
+
+<template name="add">
+  <!-- Modal -->
+  <div class="modal fade" id="addModal" tabindex="-1"
+  role="dialog" aria-labelledby="addModalLabel"
+  aria-hidden="true"> 
+  <div class="modal-dialog" role="document"> 
+      <div class="modal-content"> 
+          <div class="modal-header"> 
+              <h6 class="modal-title" 
+                      id="addModalLabel" 
+                      style="color:#e2370c;"> 
+                  Input Notes
+              </h6> 
+                
+              <!-- The title of the modal -->
+              <button type="button" class="close" 
+                      data-dismiss="modal" 
+                     > 
+                  <span aria-hidden="true">×</span> 
+              </button> 
+          </div> 
+
+          <div class="modal-body"> 
+
+              <!-- The content inside the modal box -->
+               <form class="add-form">
+            <input type="text" name="text" placeholder="Add Notes Here...">
+          </form> 
+
+          </div> 
+         
+      </div> 
+  </div> 
+</div> 
+</template>
+
